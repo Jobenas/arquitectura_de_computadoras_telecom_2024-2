@@ -3,10 +3,14 @@ from threading import Thread
 
 SOCK_BUFFER = 1024
 
+num_clients = 0
+
 
 def client_handler(conn: socket.socket, client_address: tuple):
+    global num_clients
     print(f"Conexion de {client_address[0]}:{client_address[1]}")
-
+    num_clients += 1
+    print(f"Clientes conectados actualmente: {num_clients}")
     try:
         while True:
             dato = conn.recv(SOCK_BUFFER)
@@ -22,6 +26,8 @@ def client_handler(conn: socket.socket, client_address: tuple):
     finally:
         print("Cerrando la conexión")
         conn.close()
+        num_clients -= 1
+        print(f"Clientes conectados actualmente: {num_clients}")
 
 
 if __name__ == '__main__':
