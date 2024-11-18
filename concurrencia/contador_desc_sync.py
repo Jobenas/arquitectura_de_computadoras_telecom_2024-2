@@ -1,7 +1,7 @@
 import time
 
 
-CUENTA = 70_000_000
+CUENTA = 200_000_000
 
 
 def cuenta(n: int):
